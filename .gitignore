@@ -1,0 +1,23 @@
+# Archivos de entorno de R y OS
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.DS_Store
+
+# Directorio de renv
+renv/
+
+# Datos (nunca subir datos brutos a Git)
+data/raw/
+data/processed/
+data/temp/
+
+# Salidas generadas
+output/
+
+# Reportes compilados
+report/*.html
+report/*.pdf
+
+verificacion_datos_jri.txt

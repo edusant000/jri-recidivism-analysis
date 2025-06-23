@@ -22,3 +22,37 @@ source("scripts/03_causal_analysis.R")
 ```{r}
 source("scripts/03_causal_analysis.R")
 ```
+
+### **Análisis del Impacto de la Justice Reinvestment Initiative (JRI)**
+
+El análisis causal para evaluar el impacto de la Justice Reinvestment Initiative (JRI) en las tasas de reincidencia arroja resultados complejos que sugieren una notable heterogeneidad en los efectos del tratamiento entre diferentes estados y cohortes de adopción.
+
+#### **Efecto en el Caso de Estudio: South Carolina**
+
+Un análisis detallado del estado de South Carolina, uno de los pioneros en adoptar la JRI en 2010, se llevó a cabo utilizando el Método de Control Sintético. Los hallazgos de este análisis se presentan en la Figura 1.
+
+-   **Validación del Modelo:** Durante el período previo a la intervención (1970-2009), la tasa de reincidencia del South Carolina sintético (línea púrpura) replica con alta fidelidad la trayectoria de la tasa de reincidencia observada (línea gris), lo que valida al contrafactual como un punto de comparación creíble.
+
+-   **Estimación del Impacto:** Tras la implementación de la JRI en 2010, se observa una clara divergencia entre ambas series. La tasa de reincidencia real de South Carolina se sitúa consistentemente por debajo de la trayectoria que habría seguido su contrafactual sintético.
+
+Esta evidencia sugiere que, para el caso específico de South Carolina, la JRI se asocia con una **reducción efectiva en la tasa de reincidencia**.
+
+#### **Análisis de Efectos Promedio por Cohorte de Adopción**
+
+Para evaluar si el éxito observado en South Carolina se generaliza, se estimó un modelo de Diferencias en Diferencias con adopción escalonada. La Figura 2 desglosa el efecto promedio del tratamiento (ATT) para los grupos de estados que adoptaron la JRI en 2010, 2011, 2012 y 2013.
+
+-   **Validación de Tendencias Paralelas:** Para todas las cohortes, los efectos estimados en el período previo al tratamiento (puntos en rojo) se concentran de manera estable alrededor de cero. Este resultado respalda el supuesto de tendencias paralelas, un requisito fundamental para la validez del modelo.
+
+-   **Heterogeneidad en los Efectos Post-Tratamiento:** Los resultados varían significativamente entre los grupos:
+
+    -   **Grupo 2010:** Muestra un efecto nulo post-implementación; los intervalos de confianza para los estimadores se superponen consistentemente con el cero.
+
+    -   **Grupo 2011:** Exhibe un efecto adverso. Los estimadores post-tratamiento son consistentemente positivos, indicando un aumento en la reincidencia que parece ser estadísticamente significativo en los últimos años del período observado.
+
+    -   **Grupo 2012 y 2013:** Presentan efectos mayormente nulos o ligeramente positivos, pero sin significancia estadística clara.
+
+### **Síntesis e Interpretación Conjunta**
+
+La evidencia combinada de ambos análisis indica que el impacto de la JRI no es homogéneo. El caso de éxito de South Carolina, donde la política parece haber reducido la reincidencia, no es representativo del efecto promedio del programa. El análisis por cohortes sugiere que el efecto agregado es, en el mejor de los casos, nulo para la mayoría de los grupos, e incluso podría ser perjudicial para la cohorte que adoptó la iniciativa en 2011.
+
+En conclusión, el estudio revela que el éxito de la JRI es altamente dependiente del contexto específico de su implementación. Mientras que un estado pionero como South Carolina muestra resultados positivos, el programa no parece haber generado reducciones generalizadas en la reincidencia en otras cohortes de estados, lo que subraya la importancia de factores locales en la efectividad de las reformas de justicia penal.

@@ -66,7 +66,7 @@ jri-recidivism-analysis/
 
 2.  **Adquisición de Datos:**
 
-      * [cite\_start]Descargar el set de datos `National Corrections Reporting Program, 1991-2015: Selected Variables (ICPSR 36862)` desde el archivo de ICPSR[cite: 73].
+      * [cite\_start]Descargar el set de datos `National Corrections Reporting Program, 1991-2015: Selected Variables (ICPSR 36862)` desde el archivo de ICPSR en formato tsv https://www.icpsr.umich.edu/web/NACJD/studies/36862/versions/V1/download/delimited?path=/pcms/studies/0/3/6/8/36862/V1.
       * [cite\_start]Colocar el archivo de datos `36862-0001-Data.tsv` dentro del directorio `data/raw/DS0001/`[cite: 74]. La estructura de carpetas debe coincidir con la mostrada arriba.
 
 3.  **Instalación de Dependencias:**

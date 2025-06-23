@@ -1,0 +1,24 @@
+---
+title: "03_causal_analysis"
+format: html
+editor: visual
+---
+
+## Objetivo
+
+Implementar un análisis de inferencia causal robusto para medir elimpacto de la JRI en las tasas de reincidencia.
+
+1. Control Sintético (SCM) para un estudio de caso (South Carolina).
+2, Diferencias en Diferencias con Adopción Escalonada (Callaway & Sant'Anna) para estimar el efecto promedio en todos los estados.
+
+## Análisis para South Carolina 
+
+```{r}
+source("scripts/03_causal_analysis.R")
+```
+
+## Ahora para Pensilvania
+
+```{r}
+source("scripts/03_causal_analysis.R")
+```

@@ -1,0 +1,50 @@
+---
+title: "02_exploratory_analysis"
+format: html
+editor: visual
+---
+
+## Objetivo
+
+Realizar un análisis exploratorio de la base de datos limpia.
+1. Generar estadísticas descriptivas de la composición de la muestra.
+2. Analizar el balance de características entre grupos pre-tratamiento.
+3. Crear el gráfico de tendencias paralelas para validar el supuesto clave del modelo de Diferencias en Diferencias.
+
+```{r}
+source("scripts/02_exploratory_analysis.R")
+```
+
+### **Análisis de la Situación Actual**
+
+-   **Problema Central:** Violación del supuesto de tendencias paralelas.
+
+-   **Causa Probable:** Heterogeneidad fundamental entre los estados que adoptaron el JRI y los que no. Los estados que implementaron el JRI probablemente lo hicieron porque enfrentaban problemas específicos (altas tasas de reincidencia, costos carcelarios crecientes), lo que los hace intrínsecamente diferentes del grupo de control promedio.
+
+-   **Objetivo:** Encontrar o construir un contrafactual más creíble para los estados del grupo de tratamiento.
+
+------------------------------------------------------------------------
+
+### **Estrategias Propuestas de Inferencia Causal**
+
+#### **Estrategia 1: Mejorar el Grupo de Control (Enfoque de Matching)**
+
+-   **Solución 1.A: Control Sintético (Synthetic Control Method - SCM)**
+
+-   **Solución 1.B: Propensity Score Matching (PSM)**
+
+#### **Estrategia 2: Utilizar Estimadores de DiD Robustos**
+
+Diferentes estados adoptan la política en diferentes años (su `jri_states` lo confirma: 2010, 2011, 2012, etc.).
+
+**Solución 2.A: Estimador de Callaway & Sant'Anna (2021)**
+
+### **Conclusión**
+
+El problema no es el método DiD en sí, sino su aplicación ingenua en un escenario complejo.
+
+-   **No limitarse a un DiD simple.** La evidencia visual es contundente.
+
+-   **Adoptar el Control Sintético** para un análisis de caso profundo y visualmente convincente.
+
+-   **Utilizar el estimador de Callaway & Sant'Anna** como su principal herramienta para la estimación del efecto promedio, ya que está diseñado precisamente para la estructura de datos que tenemos

@@ -80,7 +80,9 @@ jri-recidivism-analysis/
 
 ### Cómo Ejecutar el Análisis
 
-Los scripts están numerados y deben ejecutarse en orden secuencial.
+Los scripts están numerados y deben ejecutarse en orden secuencial. También se incluyeron archivos .qmd
+derivados de los scripts del EDA y del análisis causal, con el fin de añadir interpretaciones clave y mejorar 
+la lectura.
 
 1.  **Procesar los Datos Crudos:**
 

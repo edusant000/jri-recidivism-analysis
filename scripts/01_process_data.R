@@ -41,8 +41,6 @@ if (!file.exists(raw_data_path)) {
 raw_data <- readr::read_tsv(raw_data_path, show_col_types = FALSE) %>%
   clean_names()
 
-# --- INICIO DE LA SECCIÓN CORREGIDA (según sus sugerencias) ---
-
 # Chequeo defensivo para asegurar que las columnas clave existen
 cols_needed <- c("releaseyr", "state")
 missing_cols <- setdiff(cols_needed, names(raw_data))
@@ -63,7 +61,6 @@ data_clean <- raw_data %>%
     treatment = if_else(!is.na(jri_year), 1L, 0L),
     post = if_else(treatment == 1 & releaseyr >= jri_year, 1L, 0L)
   )
-# --- FIN DE LA SECCIÓN CORREGIDA ---
 
 # Calcular recidivismo
 recidivism_calculation <- data_clean %>%

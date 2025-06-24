@@ -50,7 +50,6 @@ state_level_data <- df %>%
     .groups = "drop"
   )
 
-# --- [BLOQUE CORREGIDO] Validación y Limpieza de Datos para SCM ---
 cat("-> Validando datos para SCM: balanceando, rellenando metadatos e imputando...\n")
 
 # Definir la ventana de pre-tratamiento y los predictores clave
@@ -61,8 +60,7 @@ PREDICTOR_VARS <- c("avg_recidivism", "pct_male", "pct_white", "pct_black", "pct
 balanced_data <- state_level_data %>%
   tidyr::complete(state_name, releaseyr)
 
-# 2. [NUEVO] Rellenar metadatos de tratamiento (jri_year, treatment)
-#    Se rellenan los NAs creados por complete() usando los valores existentes del mismo estado.
+# 2. Rellenar metadatos de tratamiento (jri_year, treatment)
 imputed_metadata <- balanced_data %>%
   group_by(state_name) %>%
   tidyr::fill(treatment, jri_year, .direction = "downup") %>%
@@ -103,9 +101,9 @@ cat("-> Preparación de datos para SCM finalizada. Unidades a procesar:",
 cat("-> Preparación de datos para SCM finalizada. Unidades a procesar:", length(states_with_enough_data), "\n")
 
 # =============================================================================
-# FASE 1: CONTROL SINTÉTICO (SCM) PARA SOUTH CAROLINA
+# FASE 1: CONTROL SINTÉTICO (SCM) 
 # =============================================================================
-cat("\nFASE 1: Ejecutando análisis de Control Sintético para South Carolina...\n")
+cat("\nFASE 1: Ejecutando análisis de Control Sintético ...\n")
 
 treatment_year <- 2012
 
@@ -148,14 +146,13 @@ scm_weights_plot <- plot_weights(sc_model) +
 print(scm_weights_plot)
 ggsave(here::here("output", "plots", "03_scm_weights_plot.png"), scm_weights_plot, width = 10, height = 7, bg = "white")
 
-# --- Placebos: descartar unidades con trt_time faltante ----------------------
-# --- Placebos: descartar unidades con trt_time faltante ----------------------
-sc_model_clean <- sc_model %>%                          # <-- SUSTITUIR
+
+sc_model_clean <- sc_model %>%                        
   filter(
     purrr::map_lgl(
       .meta,
-      ~ !is.null(.x$treatment_time) &&                  # nombre correcto
-        !is.na(.x$treatment_time)                       # siempre devuelve TRUE/FALSE
+      ~ !is.null(.x$treatment_time) &&                
+        !is.na(.x$treatment_time)                      
     )
   )
 
@@ -166,7 +163,6 @@ scm_data_clean <- scm_data_clean %>% mutate(releaseyr = as.integer(releaseyr))
 max_year <- max(scm_data_clean$releaseyr, na.rm = TRUE)        
 PLACEBO_WINDOW <- c(min(PRE_TREATMENT_WINDOW), max_year)
 
-# (opcional) Verificar que incluya el año de tratamiento
 print(PLACEBO_WINDOW) 
 
 scm_placebo_plot <- plot_placebos(
@@ -215,10 +211,10 @@ cs_model <- att_gt(
   tname   = "releaseyr",
   idname  = "state_id",
   gname   = "jri_year_imputed",
-  xformla = covariate_formula,          # usa solo intercepto
+  xformla = covariate_formula,       
   data    = cs_data,
   control_group = "notyettreated",
-  est_method    = "reg",                # <-- SUSTITUIR (antes “dr”)
+  est_method    = "reg",               
   allow_unbalanced_panel = TRUE
 )
 
@@ -271,6 +267,6 @@ cohort_att_plot <- ggdid(cs_model) +
 
 print(cohort_att_plot)
 ggsave(here::here("output", "plots", "06_cs_cohort_plot.png"),
-       cohort_att_plot, width = 12, height = 9, bg = "white") # Aumenté un poco la altura
+       cohort_att_plot, width = 12, height = 9, bg = "white") 
 
 cat("-> Gráfico de efectos por cohorte guardado en output/plots.\n")

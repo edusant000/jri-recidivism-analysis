@@ -8,7 +8,7 @@
 
 # Cargar librerías necesarias
 library(here)
-library(readr) # Usamos readr para una lectura de tsv simple y rápida
+library(readr)
 library(dplyr)
 
 # 1. Definir la ruta al nuevo archivo .tsv
